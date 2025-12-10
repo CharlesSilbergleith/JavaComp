@@ -1,33 +1,40 @@
 import java.util.List;
 import java.util.ArrayList;
 
-
 public class FriendsList {
-    List<Profile> friend = new ArrayList<>();
 
-    public FriendsList(){
+    private List<Profile> friends = new ArrayList<>();
 
-    }
-    public FriendsList(List<Profile> friend){
-        for(Profile f : friend){
-            this.friend.add(f);
-        }
+    public FriendsList() {}
 
+    public FriendsList(List<Profile> friends) {
+        this.friends.addAll(friends);
     }
 
-    public void getFriendsList(){
-        for(Profile f : this.friend){
-            System.out.println(f.toString());
-        }
+    public void addFriend(Profile p) {
+        friends.add(p);
     }
-    public void getFriend(String username){
-        for(Profile f : this.friend){
-            if(f.getUsername().equals(username)){
-                System.out.println(f.toString());
+
+    public void removeFriend(String username) {
+        friends.removeIf(f -> f.getUsername().equals(username));
+    }
+
+    public List<Profile> getFriendsList() {
+        return friends;
+    }
+
+    public Profile getFriend(String username) {
+        for (Profile p : friends) {
+            if (p.getUsername().equals(username)) {
+                return p;
             }
         }
-
+        return null;
     }
 
-
+    public void printFriends() {
+        for (Profile p : friends) {
+            System.out.println(p.toString());
+        }
+    }
 }

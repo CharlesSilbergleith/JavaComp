@@ -1,29 +1,27 @@
 public class Allergy {
-    public String alergy;
-    public String description;
 
+    private String allergy;
+    private String description;
 
-
-    public Allergy(String alergy, String description){
-
-        this.alergy = alergy;
+    public Allergy(String allergy, String description) {
+        this.allergy = allergy;
         this.description = description;
     }
 
     public String getAllergy() {
-        return alergy;
+        return allergy;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public boolean CheckAllergy( String allergy ){
-        if(this.alergy.equals(allergy) )
-            return true;
-
-        return false;
+    public boolean checkAllergy(String allergyToCheck) {
+        return allergy.equalsIgnoreCase(allergyToCheck);
     }
 
-
+    @Override
+    public String toString() {
+        return allergy + ": " + description;
+    }
 }
