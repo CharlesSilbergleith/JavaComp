@@ -263,7 +263,7 @@ class GUI extends JFrame{
         // RIGHT SIDE PARTY DISPLAY AND SORT
         JPanel PartyPanel = new JPanel(new BorderLayout());  // <-- IMPORTANT FIX
     
-        JTextArea partyNameDisplay = new JTextArea();
+        JTextArea partyNameDisplay = new JTextArea(5,30);
         partyNameDisplay.setEditable(false);
         partyNameDisplay.setFont(monoSpace);
         partyNameDisplay.setAlignmentX(RIGHT_ALIGNMENT);
@@ -282,6 +282,34 @@ class GUI extends JFrame{
         PartyPanel.add(ButtonPanel, BorderLayout.SOUTH);
     
         add(PartyPanel, BorderLayout.WEST);
+
+
+        //main display edit and make party
+
+        JPanel MainPanel = new JPanel(new BorderLayout());
+        
+        JTextArea display = new JTextArea(5,30);
+        display.setEditable(false);
+        MainPanel.add(display,BorderLayout.NORTH);
+
+        JTextField food = new JTextField();
+        food.setFont(monoSpace);
+        food.setText("Enter food");
+        MainPanel.add(food,BorderLayout.CENTER);
+
+        add(MainPanel, BorderLayout.CENTER);
+
+        JPanel FriendsPanel = new JPanel(new BorderLayout());
+        
+        JTextArea friendsList = new JTextArea();
+        friendsList.setFont(monoSpace);
+        friendsList.setEditable(false);
+        FriendsPanel.add(friendsList, BorderLayout.NORTH);
+        friendsList.setText("Frieds List\n friends");
+        add(FriendsPanel, BorderLayout.EAST);
+
+
+
     }
 
 
