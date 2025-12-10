@@ -2,6 +2,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
 
 public class Main {
 
@@ -55,12 +59,11 @@ public class Main {
         List<Party> parties = new ArrayList<>();
 
         // --- START PROGRAM ---
-        System.out.println("----- Welcome to AllergyLink -----\n");
+        GUI gui = new GUI();
+        
+        gui.setVisible(true);
+        
 
-        Profile currentUser = Login(members);
-
-        // Enter the main menu
-        mainMenu(currentUser, members, parties, foods, friendsList);
     }
 
 
@@ -232,9 +235,57 @@ public class Main {
         }
 
         if (safe) {
-            System.out.println("\n✔ This dish is SAFE for the entire party!");
+            System.out.println("\n This dish is SAFE for the entire party!");
         } else {
-            System.out.println("\n❌ This dish CANNOT be served.");
+            System.out.println("\n This dish CANNOT be served.");
         }
     }
+}
+
+
+
+class GUI extends JFrame{
+
+    private JButton thisParty;
+    private JButton upButton;
+    private JButton downButton;
+    private JButton newButton;
+    
+    Font monoSpace = new Font("monoSpace",Font.BOLD,20);
+    
+   
+    public GUI() {
+        setTitle("AllergyLink");
+        setSize(1920,1080);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+    
+        // RIGHT SIDE PARTY DISPLAY AND SORT
+        JPanel PartyPanel = new JPanel(new BorderLayout());  // <-- IMPORTANT FIX
+    
+        JTextArea partyNameDisplay = new JTextArea();
+        partyNameDisplay.setEditable(false);
+        partyNameDisplay.setFont(monoSpace);
+        partyNameDisplay.setAlignmentX(RIGHT_ALIGNMENT);
+        partyNameDisplay.setText("Party Name Here");
+    
+        PartyPanel.add(partyNameDisplay, BorderLayout.NORTH);
+    
+        JPanel ButtonPanel = new JPanel();
+        ButtonPanel.setLayout(new GridLayout(0, 1, 0, 10));
+    
+        ButtonPanel.add(new JButton("ThisParty"));
+        ButtonPanel.add(new JButton("Next Party"));
+        ButtonPanel.add(new JButton("Previous Party"));
+        ButtonPanel.add(new JButton("New Party"));
+    
+        PartyPanel.add(ButtonPanel, BorderLayout.SOUTH);
+    
+        add(PartyPanel, BorderLayout.WEST);
+    }
+
+
+
+
+
 }
