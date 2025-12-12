@@ -1,5 +1,4 @@
 public class Allergy {
-
     private String allergy;
     private String description;
 
@@ -16,12 +15,21 @@ public class Allergy {
         return description;
     }
 
-    public boolean checkAllergy(String allergyToCheck) {
-        return allergy.equalsIgnoreCase(allergyToCheck);
+    @Override
+    public String toString() {
+        return allergy;
     }
 
     @Override
-    public String toString() {
-        return allergy + ": " + description;
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Allergy)) return false;
+        Allergy other = (Allergy) obj;
+        return allergy.equalsIgnoreCase(other.allergy);
+    }
+
+    @Override
+    public int hashCode() {
+        return allergy.toLowerCase().hashCode();
     }
 }

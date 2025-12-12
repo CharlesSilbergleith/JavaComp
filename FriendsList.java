@@ -1,40 +1,32 @@
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class FriendsList {
 
-    private List<Profile> friends = new ArrayList<>();
-
-    public FriendsList() {}
+    private List<Profile> friends;
 
     public FriendsList(List<Profile> friends) {
-        this.friends.addAll(friends);
+        // Ensure mutable copy
+        this.friends = new ArrayList<>(friends);
     }
 
-    public void addFriend(Profile p) {
-        friends.add(p);
-    }
-
-    public void removeFriend(String username) {
-        friends.removeIf(f -> f.getUsername().equals(username));
-    }
-
-    public List<Profile> getFriendsList() {
+    public List<Profile> getAllFriends() {
         return friends;
     }
 
     public Profile getFriend(String username) {
-        for (Profile p : friends) {
-            if (p.getUsername().equals(username)) {
-                return p;
+        for (Profile f : friends) {
+            if (f.getUsername().equalsIgnoreCase(username)) {
+                return f;
             }
         }
         return null;
     }
 
     public void printFriends() {
-        for (Profile p : friends) {
-            System.out.println(p.toString());
+        System.out.println("Friends:");
+        for (Profile f : friends) {
+            System.out.println("- " + f.getUsername());
         }
     }
 }
